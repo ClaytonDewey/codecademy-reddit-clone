@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import redditFace from '../images/redditFace.svg';
+import redditText from '../images/redditText.svg';
 
 const StyledNav = styled.nav`
   display: flex;
@@ -6,17 +8,12 @@ const StyledNav = styled.nav`
   height: 4.4rem;
   padding: 6px 12px;
 
-  ul {
-    list-style: none;
+  .logo-container {
     display: flex;
-
-    a {
-      padding: 0 1rem;
-    }
+    align-items: center;
+    width: 4rem;
+    margin-right: 2rem;
   }
-
-  border-top: 1px solid var(--black);
-  border-bottom: 1px solid var(--black);
 `;
 
 type NavProps = {};
@@ -24,14 +21,10 @@ type NavProps = {};
 const Nav: React.FC<NavProps> = () => {
   return (
     <StyledNav>
-      <ul>
-        <li>
-          <a href='/'>somewhere</a>
-        </li>
-        <li>
-          <a href='/'>somewhere else</a>
-        </li>
-      </ul>
+      <div className='logo-container'>
+        <img src={redditFace} height='30px' alt='logo' role='presentation' />
+        <img src={redditText} height='46px' alt='reddit' role='presentation' />
+      </div>
     </StyledNav>
   );
 };
