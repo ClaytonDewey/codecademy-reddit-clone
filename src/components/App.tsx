@@ -1,8 +1,7 @@
 import GlobalStyle from '../theme/global';
 import '../theme/main.scss';
 import Header from './Header';
-import Posts from './Posts';
-import Sidebar from './Sidebar';
+import PageContent from './PageContent';
 
 type AppProps = {};
 
@@ -11,8 +10,7 @@ const App: React.FC<AppProps> = () => {
     <div className='App'>
       <GlobalStyle />
       <Header />
-      <Posts />
-      <Sidebar />
+      <PageContent />
     </div>
   );
 };
