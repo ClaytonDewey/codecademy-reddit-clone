@@ -8,7 +8,7 @@ const StyledPostsWrapper = styled.div`
   min-width: 0;
   width: 100%;
 
-  @media screen and (min-width: 640px) {
+  @media screen and (min-width: 960px) {
     width: 640px;
   }
 `;
@@ -16,8 +16,6 @@ const StyledPostsWrapper = styled.div`
 const Posts: React.FC<PostsProps> = () => {
   return (
     <StyledPostsWrapper>
-      <Post />
-      <Post />
       <Post />
       <Post />
     </StyledPostsWrapper>
