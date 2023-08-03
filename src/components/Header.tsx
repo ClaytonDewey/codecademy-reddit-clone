@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import redditFace from '../images/redditFace.svg';
 import redditText from '../images/redditText.svg';
-import { FaSearch } from 'react-icons/fa';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const StyledHeader = styled.header`
   grid-column: 1/-1;
@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   color: var(--color-branding);
   background: var(--color-foreground);
   box-shadow: var(--box-shadow);
-  height: 48px;
+  height: 49px;
   padding: 0 var(--spacing-3);
 
   .logo {
@@ -38,7 +38,8 @@ const StyledHeader = styled.header`
     border: none;
     padding: var(--spacing-1) var(--spacing-2) var(--spacing-1) 40px;
     /* height: max-content; */
-    border-radius: 1.25em;
+    border-radius: 50px;
+    height: 40px;
   }
 
   .search button {
@@ -64,7 +65,7 @@ const Header: React.FC<HeaderProps> = () => {
       <form className='search'>
         <input type='text' placeholder='Search' aria-label='Search Posts' />
         <button type='submit' aria-label='Search'>
-          <FaSearch />
+          <AiOutlineSearch />
         </button>
       </form>
     </StyledHeader>
