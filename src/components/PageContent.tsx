@@ -3,11 +3,16 @@ import Posts from './Posts';
 import Sidebar from './Sidebar';
 
 const StyledContainer = styled.main`
+  box-sizing: border-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: row wrap;
-  width: 95%;
-  max-width: 86rem;
-  margin: auto;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1248px;
+  padding: 20px 24px;
 `;
 
 type PageContentProps = {};
