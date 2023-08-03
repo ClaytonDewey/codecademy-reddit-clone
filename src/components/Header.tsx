@@ -13,8 +13,8 @@ const StyledHeader = styled.header`
   color: var(--color-branding);
   background: var(--color-foreground);
   box-shadow: var(--box-shadow);
-  height: 64px;
-  padding: 0 var(--spacing-5);
+  height: 48px;
+  padding: 0 var(--spacing-3);
 
   .logo {
     display: flex;
@@ -28,13 +28,17 @@ const StyledHeader = styled.header`
     align-items: center;
   }
 
+  form {
+    position: relative;
+  }
+
   .search input {
     flex-grow: 1;
     background: var(--color-background-secondary);
     border: none;
-    padding: var(--spacing-1) var(--spacing-2);
-    height: max-content;
-    border-radius: var(--radius);
+    padding: var(--spacing-1) var(--spacing-2) var(--spacing-1) 40px;
+    /* height: max-content; */
+    border-radius: 1.25em;
   }
 
   .search button {
@@ -42,7 +46,10 @@ const StyledHeader = styled.header`
     border: none;
     cursor: pointer;
     color: var(--color-text-secondary);
-    font-size: 1.5rem;
+    font-size: 2rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 12px;
   }
 `;
 type HeaderProps = {};
