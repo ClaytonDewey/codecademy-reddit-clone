@@ -16,7 +16,6 @@ const StyledPostsWrapper = styled.div`
 const Posts: React.FC<PostsProps> = () => {
   return (
     <StyledPostsWrapper>
-      <h2>Posts</h2>
       <Post />
       <Post />
       <Post />
