@@ -15,7 +15,7 @@ const PostContainer = styled.div`
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
-  height: 250px;
+  min-height: 88px;
   cursor: pointer;
 
   .vote {
@@ -24,6 +24,7 @@ const PostContainer = styled.div`
 
   .post-container {
     background-color: #fff;
+    min-height: 88px;
     height: 100%;
     padding: 8px;
   }
