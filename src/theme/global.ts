@@ -1,12 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 
   :root {
     --white: #fff;
     --black: #333;
     --color-background: #fcfcfc;
+    --color-background-primary: #d9e0e6;
     --color-background-secondary: #f3f3f3;
     --color-foreground: #ffffff;
     --color-border: #e6e6e6;
@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     box-sizing: border-box;
     height: 100%;
-    background: var(--white);
+    background: var(--color-background-primary);
     color: var(--black);
   }
 
