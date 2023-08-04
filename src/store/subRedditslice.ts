@@ -27,7 +27,7 @@ const subredditSlice = createSlice({
 });
 
 export const { getSubredditsFailed, getSubredditsSuccess, startGetSubreddits } =
-  subredditSlice.reducer;
+  subredditSlice.actions;
 
 export default subredditSlice.reducer;
 
