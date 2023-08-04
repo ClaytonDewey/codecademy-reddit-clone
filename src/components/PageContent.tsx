@@ -12,7 +12,11 @@ const StyledContainer = styled.main`
   justify-content: center;
   margin: 0 auto;
   max-width: 1248px;
-  padding: 20px 24px;
+  padding: 20px 0;
+
+  @media screen and (min-width: 960px) {
+    padding: 20px 24px;
+  }
 `;
 
 type PageContentProps = {};
