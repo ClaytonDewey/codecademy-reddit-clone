@@ -6,22 +6,15 @@ import {
   fetchPosts,
   selectFilteredPosts,
   // setSearchTerm,
-  fetchComments,
+  // fetchComments,
 } from '../store/redditSlice';
 import { styled } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../store';
 import { useAppSelector } from '../hooks';
+import { PostObj } from '../types';
 
 type PostsProps = {};
-
-type PostObj = {
-  id: string;
-  author: string;
-  created_utc: number;
-  permalink: string;
-  num_comments: number;
-};
 
 const StyledPostsWrapper = styled.section`
   min-width: 0;
@@ -42,13 +35,13 @@ const Posts: React.FC<PostsProps> = () => {
     dispatch(fetchPosts(selectedSubreddit));
   }, [selectedSubreddit, dispatch]);
 
-  const onToggleComments = (index: number) => {
-    const getComments = (link: string) => {
-      dispatch(fetchComments(index, link));
-    };
+  // const onToggleComments = (index: number) => {
+  //   const getComments = (link: string) => {
+  //     dispatch(fetchComments(index, link));
+  //   };
 
-    return getComments;
-  };
+  //   return getComments;
+  // };
 
   if (isLoading) {
     return (
@@ -73,7 +66,7 @@ const Posts: React.FC<PostsProps> = () => {
           <Post
             key={post.id}
             post={post}
-            onToggleComments={onToggleComments(index)}
+            // onToggleComments={onToggleComments(index)}
           />
         );
       })}
