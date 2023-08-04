@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getSubreddits } from '../api';
+import { Dispatch } from 'redux';
 
 const initialState = {
   subreddits: [],
@@ -31,7 +32,7 @@ export const { getSubredditsFailed, getSubredditsSuccess, startGetSubreddits } =
 
 export default subredditSlice.reducer;
 
-export const fetchSubreddits = () => async (dispatch) => {
+export const fetchSubreddits = () => async (dispatch: Dispatch) => {
   try {
     dispatch(startGetSubreddits());
     const subreddits = await getSubreddits();
