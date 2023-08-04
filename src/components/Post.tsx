@@ -7,10 +7,24 @@ import {
 import { GoComment } from 'react-icons/go';
 import avatar from '../assets/fcc.png';
 import postImage from '../assets/postImage.png';
+import moment from 'moment';
+import shortenNumber from '../utils/shortenNumber';
 
-type PostProps = {};
+type PostObj = {
+  id: string;
+  author: string;
+  created_utc: number;
+  permalink: string;
+  num_comments: number;
+};
 
-const PostContainer = styled.div`
+type PostProps = {
+  key: string;
+  post: PostObj;
+  onToggleComments: (link: any) => void;
+};
+
+const PostContainer = styled.article`
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 4px;
   padding-left: 40px;
@@ -178,9 +192,9 @@ const PostContainer = styled.div`
   }
 `;
 
-const Post: React.FC<PostProps> = () => {
+const Post: React.FC<PostProps> = ({ key, post, onToggleComments }) => {
   return (
-    <PostContainer>
+    <PostContainer key={key}>
       <div className='vote'>
         <button className='vote-up'>
           <IoArrowUpCircleOutline />
@@ -197,8 +211,10 @@ const Post: React.FC<PostProps> = () => {
           </div>
           <div className='post-meta'>
             <div className='subreddit'>r/FreeCodeCamp</div>
-            <div className='post-user'>Posted by u/Puzzleheaded_Line210</div>
-            <div className='post-date'>16 hours ago</div>
+            <div className='post-user'>Posted by u/{post.author}</div>
+            <div className='post-date'>
+              {moment.unix(post.created_utc).fromNow()}
+            </div>
           </div>
         </div>
         <h3 className='post-title'>Post title</h3>
@@ -208,10 +224,12 @@ const Post: React.FC<PostProps> = () => {
         </div>
 
         <div className='post-footer'>
-          <a href='/'>
+          <button
+            onClick={() => onToggleComments(post.permalink)}
+            aria-label='Show comments'>
             <GoComment />
-            <span>5 Comments</span>
-          </a>
+            <span>{shortenNumber(post.num_comments, 1)} Comments</span>
+          </button>
         </div>
       </div>
     </PostContainer>
