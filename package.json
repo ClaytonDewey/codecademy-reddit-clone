@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-icons": "^3.0.0",
     "@types/styled-components": "^5.1.26",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-animated-list": "^0.1.4",
     "react-dom": "^18.2.0",
