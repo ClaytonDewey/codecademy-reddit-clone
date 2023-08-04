@@ -114,6 +114,11 @@ const PostContainer = styled.div`
       line-height: 20px;
       text-decoration: none;
       vertical-align: baseline;
+      margin-right: var(--spacing-1);
+    }
+
+    .post-user {
+      margin-right: var(--spacing-1);
     }
 
     .post-title {
