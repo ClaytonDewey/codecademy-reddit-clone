@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { getPosts, getComments } from '../api/reddit';
+import { getPosts, getComments } from '../api';
 
 const initialState = {
   posts: [],
