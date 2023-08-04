@@ -9,19 +9,12 @@ import avatar from '../assets/fcc.png';
 import postImage from '../assets/postImage.png';
 import moment from 'moment';
 import shortenNumber from '../utils/shortenNumber';
-
-type PostObj = {
-  id: string;
-  author: string;
-  created_utc: number;
-  permalink: string;
-  num_comments: number;
-};
+import { PostObj } from '../types';
 
 type PostProps = {
   key: string;
   post: PostObj;
-  onToggleComments: (link: any) => void;
+  // onToggleComments: (link: any) => void;
 };
 
 const PostContainer = styled.article`
@@ -168,7 +161,10 @@ const PostContainer = styled.article`
       padding: 0 8px 0 4px;
       flex-grow: 1;
 
-      a {
+      button {
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
         text-decoration: none;
         line-height: 16px;
         color: var(--color-text-body);
@@ -192,7 +188,7 @@ const PostContainer = styled.article`
   }
 `;
 
-const Post: React.FC<PostProps> = ({ key, post, onToggleComments }) => {
+const Post: React.FC<PostProps> = ({ key, post }) => {
   return (
     <PostContainer key={key}>
       <div className='vote'>
@@ -217,15 +213,15 @@ const Post: React.FC<PostProps> = ({ key, post, onToggleComments }) => {
             </div>
           </div>
         </div>
-        <h3 className='post-title'>Post title</h3>
+        <h3 className='post-title'>{post.title}</h3>
 
-        <div className='post-image'>
+        {/* <div className='post-image'>
           <img src={postImage} alt='' />
-        </div>
+        </div> */}
 
         <div className='post-footer'>
           <button
-            onClick={() => onToggleComments(post.permalink)}
+            // onClick={() => onToggleComments(post.permalink)}
             aria-label='Show comments'>
             <GoComment />
             <span>{shortenNumber(post.num_comments, 1)} Comments</span>
