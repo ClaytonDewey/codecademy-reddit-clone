@@ -40,9 +40,16 @@ const StyledButton = styled.div`
 `;
 
 const BackTopButton: React.FC<BackTopButtonProps> = () => {
+  const scrollTotop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <StyledButton>
-      <button>Back to Top</button>
+      <button onClick={scrollTotop}>Back to Top</button>
     </StyledButton>
   );
 };
