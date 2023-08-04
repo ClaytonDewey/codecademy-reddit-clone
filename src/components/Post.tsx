@@ -4,6 +4,9 @@ import {
   IoArrowDownCircleOutline,
   IoArrowUpCircleOutline,
 } from 'react-icons/io5';
+import { GoComment } from 'react-icons/go';
+import avatar from '../assets/fcc.png';
+import postImage from '../assets/postImage.png';
 
 type PostProps = {};
 
@@ -22,7 +25,7 @@ const PostContainer = styled.div`
     display: none;
   }
 
-  .post-container {
+  .post-body {
     background-color: #fff;
     min-height: 88px;
     height: 100%;
@@ -64,6 +67,109 @@ const PostContainer = styled.div`
       pointer-events: none;
       word-break: normal;
     }
+
+    .post-header {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+      -ms-flex-align: start;
+      align-items: start;
+      margin: 0 8px 8px;
+      position: relative;
+    }
+
+    .post-avatar {
+      flex: 0 0 auto;
+    }
+
+    .post-avatar img {
+      display: inline-block;
+      height: 20px;
+      margin-right: 4px;
+      vertical-align: middle;
+      width: 20px;
+      border-radius: 100%;
+    }
+
+    .post-meta {
+      -ms-flex-align: center;
+      align-items: center;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+    .subreddit {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 12px;
+      display: inline;
+      line-height: 20px;
+      text-decoration: none;
+      vertical-align: baseline;
+    }
+
+    .post-title {
+      display: inline;
+      padding-right: 5px;
+      word-wrap: break-word;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    .post-image {
+      margin-top: 8px;
+      max-height: 512px;
+      position: relative;
+
+      img {
+        display: block;
+        max-width: 100%;
+        position: relative;
+        margin: 0 auto;
+        max-height: 512px;
+      }
+    }
+
+    .post-footer {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      min-height: 40px;
+      font-weight: 700;
+      font-size: 12px;
+      overflow: hidden;
+      padding: 0 8px 0 4px;
+      flex-grow: 1;
+
+      a {
+        text-decoration: none;
+        line-height: 16px;
+        color: var(--color-text-body);
+        transition: opacity 0.25s ease-in-out;
+
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+
+      svg {
+        margin-right: 6px;
+        height: 20px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 20px;
+        vertical-align: middle;
+        width: 20px;
+      }
+    }
   }
 `;
 
@@ -79,8 +185,29 @@ const Post: React.FC<PostProps> = () => {
           <IoArrowDownCircleOutline />
         </button>
       </div>
-      <div className='post-container'>
+      <div className='post-body'>
+        <div className='post-header'>
+          <div className='post-avatar'>
+            <img src={avatar} alt='' role='presentation' />
+          </div>
+          <div className='post-meta'>
+            <div className='subreddit'>r/FreeCodeCamp</div>
+            <div className='post-user'>Posted by u/Puzzleheaded_Line210</div>
+            <div className='post-date'>16 hours ago</div>
+          </div>
+        </div>
         <h3 className='post-title'>Post title</h3>
+
+        <div className='post-image'>
+          <img src={postImage} alt='' />
+        </div>
+
+        <div className='post-footer'>
+          <a href='/'>
+            <GoComment />
+            <span>5 Comments</span>
+          </a>
+        </div>
       </div>
     </PostContainer>
   );
