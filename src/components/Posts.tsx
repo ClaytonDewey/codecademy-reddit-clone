@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 type PostsProps = {};
 
-const StyledPostsWrapper = styled.div`
+const StyledPostsWrapper = styled.section`
   min-width: 0;
   width: 100%;
 
