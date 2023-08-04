@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type SidebarProps = {};
 
-const StyledSidebar = styled.div`
+const StyledSidebar = styled.aside`
   display: none;
   flex: 0 0 312px;
   width: 312px;
