@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Subreddit from './Subreddit';
+import BackTopButton from './BackTopButton';
 
 type SidebarProps = {};
 
@@ -16,8 +18,11 @@ const StyledSidebar = styled.aside`
     margin-bottom: 10px;
     overflow: hidden;
     position: relative;
-    cursor: pointer;
     padding: 8px;
+
+    h2 {
+      margin-bottom: var(--spacing-2);
+    }
   }
 
   @media screen and (min-width: 960px) {
@@ -30,7 +35,10 @@ const Sidebar: React.FC<SidebarProps> = () => {
     <StyledSidebar>
       <div className='card'>
         <h2>Subreddits</h2>
+        <Subreddit />
       </div>
+
+      <BackTopButton />
     </StyledSidebar>
   );
 };
