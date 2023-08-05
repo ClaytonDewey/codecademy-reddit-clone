@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Post from './Post';
+import PostLoading from './PostLoading';
 import { AnimatedList } from 'react-animated-list';
 import getRandomNumber from '../utils/getRandomNumber';
 import {
@@ -45,9 +46,11 @@ const Posts: React.FC<PostsProps> = () => {
 
   if (isLoading) {
     return (
-      <AnimatedList animation='zoom'>
-        {Array(getRandomNumber(3, 10)).fill(<p>loading</p>)}
-      </AnimatedList>
+      <StyledPostsWrapper>
+        <AnimatedList animation='zoom'>
+          {Array(getRandomNumber(3, 10)).fill(<PostLoading />)}
+        </AnimatedList>
+      </StyledPostsWrapper>
     );
   }
 
@@ -62,6 +65,7 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <StyledPostsWrapper>
       {posts.map((post: PostObj, index: number) => {
+        console.log(post);
         return (
           <Post
             key={post.id}
