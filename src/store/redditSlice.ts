@@ -8,7 +8,7 @@ const initialState = {
   error: false,
   isLoading: false,
   searchTerm: '',
-  selectedSubreddit: '/r/pics/',
+  selectedSubreddit: '/r/reddeadredemption/',
 };
 
 const redditSlice = createSlice({
