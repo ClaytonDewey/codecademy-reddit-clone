@@ -6,7 +6,6 @@ import {
 } from 'react-icons/io5';
 import { GoComment } from 'react-icons/go';
 import avatar from '../assets/fcc.png';
-import postImage from '../assets/postImage.png';
 import moment from 'moment';
 import shortenNumber from '../utils/shortenNumber';
 import { PostObj } from '../types';
@@ -202,11 +201,11 @@ const Post: React.FC<PostProps> = ({ key, post }) => {
       </div>
       <div className='post-body'>
         <div className='post-header'>
-          <div className='post-avatar'>
+          {/* <div className='post-avatar'>
             <img src={avatar} alt='' role='presentation' />
-          </div>
+          </div> */}
           <div className='post-meta'>
-            <div className='subreddit'>r/FreeCodeCamp</div>
+            <div className='subreddit'>r/{post.subreddit}</div>
             <div className='post-user'>Posted by u/{post.author}</div>
             <div className='post-date'>
               {moment.unix(post.created_utc).fromNow()}
@@ -215,9 +214,9 @@ const Post: React.FC<PostProps> = ({ key, post }) => {
         </div>
         <h3 className='post-title'>{post.title}</h3>
 
-        {/* <div className='post-image'>
-          <img src={postImage} alt='' />
-        </div> */}
+        <div className='post-image'>
+          <img src={post.url} alt='' />
+        </div>
 
         <div className='post-footer'>
           <button
