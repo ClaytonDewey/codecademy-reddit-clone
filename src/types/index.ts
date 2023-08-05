@@ -5,4 +5,6 @@ export interface PostObj {
   permalink: string;
   num_comments: number;
   title: string;
+  url: string;
+  subreddit: string;
 }
