@@ -205,7 +205,7 @@ const Post: React.FC<PostProps> = ({ key, post }) => {
             <img src={avatar} alt='' role='presentation' />
           </div> */}
           <div className='post-meta'>
-            <div className='subreddit'>r/{post.subreddit}</div>
+            <div className='subreddit'>{post.subreddit_name_prefixed}</div>
             <div className='post-user'>Posted by u/{post.author}</div>
             <div className='post-date'>
               {moment.unix(post.created_utc).fromNow()}
