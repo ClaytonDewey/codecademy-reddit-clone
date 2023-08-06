@@ -3,7 +3,22 @@ import { getPosts, getComments } from '../api';
 import { Dispatch } from 'redux';
 import { PostObj } from '../types';
 
-const initialState = {
+type Posts = {
+  showingComments: boolean;
+  loadingComments: boolean;
+  comments: {};
+  error: {};
+};
+
+interface PostState {
+  posts: Posts[];
+  error: boolean;
+  isLoading: boolean;
+  searchTerm: string;
+  selectedSubreddit: string;
+}
+
+const initialState: PostState = {
   posts: [],
   error: false,
   isLoading: false,
@@ -37,28 +52,27 @@ const redditSlice = createSlice({
       state.selectedSubreddit = action.payload;
       state.searchTerm = '';
     },
-    // toggleShowingComments(state, action) {
-    //   state.posts[action.payload].showingComments =
-    //     !state.posts[action.payload].showingComments;
-    // },
-    // startGetComments(state, action) {
-    //   // If we're hiding comment, don't fetch the comments.
-    //   state.posts[action.payload].showingComments =
-    //     !state.posts[action.payload].showingComments;
-    //   if (!state.posts[action.payload].showingComments) {
-    //     return;
-    //   }
-    //   state.posts[action.payload].loadingComments = true;
-    //   state.posts[action.payload].error = false;
-    // },
-    // getCommentsSuccess(state, action) {
-    //   state.posts[action.payload.index].loadingComments = false;
-    //   state.posts[action.payload.index].comments = action.payload.comments;
-    // },
-    // getCommentsFailed(state, action) {
-    //   state.posts[action.payload].loadingComments = false;
-    //   state.posts[action.payload].error = true;
-    // },
+    toggleShowingComments(state, action) {
+      state.posts[action.payload].showingComments =
+        !state.posts[action.payload].showingComments;
+    },
+    startGetComments(state, action) {
+      state.posts[action.payload].showingComments =
+        !state.posts[action.payload].showingComments;
+      if (!state.posts[action.payload].showingComments) {
+        return;
+      }
+      state.posts[action.payload].loadingComments = true;
+      state.posts[action.payload].error = false;
+    },
+    getCommentsSuccess(state, action) {
+      state.posts[action.payload.index].loadingComments = false;
+      state.posts[action.payload.index].comments = action.payload.comments;
+    },
+    getCommentsFailed(state, action) {
+      state.posts[action.payload].loadingComments = false;
+      state.posts[action.payload].error = true;
+    },
   },
 });
 
@@ -69,21 +83,19 @@ export const {
   startGetPosts,
   setSearchTerm,
   setSelectedSubreddit,
-  // toggleShowingComments,
-  // getCommentsFailed,
-  // getCommentsSuccess,
-  // startGetComments,
+  toggleShowingComments,
+  getCommentsFailed,
+  getCommentsSuccess,
+  startGetComments,
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
 
-// This is a Redux Thunk that gets posts from a subreddit.
 export const fetchPosts = (subreddit: string) => async (dispatch: Dispatch) => {
   try {
     dispatch(startGetPosts());
     const posts = await getPosts(subreddit);
 
-    // We are adding showingComments and comments as additional fields to handle showing them when the user wants to. We need to do this because we need to call another API endpoint to get the comments for each post.
     const postsWithMetadata = posts.map((post: PostObj) => ({
       ...post,
       showingComments: false,
@@ -97,16 +109,16 @@ export const fetchPosts = (subreddit: string) => async (dispatch: Dispatch) => {
   }
 };
 
-// export const fetchComments =
-//   (index, permalink) => async (dispatch: Dispatch) => {
-//     try {
-//       dispatch(startGetComments(index));
-//       const comments = await getComments(permalink);
-//       dispatch(getCommentsSuccess({ index, comments }));
-//     } catch (error) {
-//       dispatch(getCommentsFailed(index));
-//     }
-//   };
+export const fetchComments =
+  (index, permalink) => async (dispatch: Dispatch) => {
+    try {
+      dispatch(startGetComments(index));
+      const comments = await getComments(permalink);
+      dispatch(getCommentsSuccess({ index, comments }));
+    } catch (error) {
+      dispatch(getCommentsFailed(index));
+    }
+  };
 
 const selectPosts = (state) => state.reddit.posts;
 const selectSearchTerm = (state) => state.reddit.searchTerm;
