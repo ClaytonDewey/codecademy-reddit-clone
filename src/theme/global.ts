@@ -68,6 +68,32 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   }
+
+  .btn {
+    position: relative;
+    cursor: pointer;
+    background-color: var(--color-branding);
+    border: none;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    min-height: 32px;
+    min-width: 32px;
+    padding: var(--spacing-0) var(--spacing-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    text-align: center;
+    width: auto;
+    transition: opacity 0.25s ease-in-out;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
 `;
 
 export default GlobalStyle;
