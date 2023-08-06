@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import redditFace from '../images/redditFace.svg';
 import redditText from '../images/redditText.svg';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store';
 import { useAppSelector } from '../hooks';
 import { setSearchTerm } from '../store/redditSlice';
