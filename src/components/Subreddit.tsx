@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import icon from '../assets/subRedditIcon.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../store';
-import { useAppSelector } from '../hooks';
 import { fetchSubreddits, selectSubreddits } from '../store/subRedditslice';
 import {
   setSelectedSubreddit,
