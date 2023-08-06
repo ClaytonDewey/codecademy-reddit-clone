@@ -6,5 +6,5 @@ export interface PostObj {
   num_comments: number;
   title: string;
   url: string;
-  subreddit: string;
+  subreddit_name_prefixed: string;
 }
