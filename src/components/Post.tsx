@@ -5,10 +5,10 @@ import {
   IoArrowUpCircleOutline,
 } from 'react-icons/io5';
 import { GoComment } from 'react-icons/go';
-import avatar from '../assets/fcc.png';
 import moment from 'moment';
 import shortenNumber from '../utils/shortenNumber';
 import { PostObj } from '../types';
+import Comment from './Comment';
 
 type PostProps = {
   key: string;
@@ -227,6 +227,7 @@ const Post: React.FC<PostProps> = ({ key, post }) => {
           </button>
         </div>
       </div>
+      <Comment />
     </PostContainer>
   );
 };
