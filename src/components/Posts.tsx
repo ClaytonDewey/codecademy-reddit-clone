@@ -65,7 +65,6 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <StyledPostsWrapper>
       {posts.map((post: PostObj, index: number) => {
-        console.log(post);
         return (
           <Post
             key={post.id}
