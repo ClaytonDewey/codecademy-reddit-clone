@@ -6,6 +6,7 @@ import getRandomNumber from '../utils/getRandomNumber';
 import {
   fetchPosts,
   selectFilteredPosts,
+  setSearchTerm,
   // setSearchTerm,
   // fetchComments,
 } from '../store/redditSlice';
@@ -59,7 +60,18 @@ const Posts: React.FC<PostsProps> = () => {
   }
 
   if (posts.length === 0) {
-    return <p>No posts matching "{searchTerm}"</p>;
+    return (
+      <StyledPostsWrapper>
+        <div className='text-center'>
+          <h2 className='my-2'>No posts matching "{searchTerm}"</h2>
+          <button
+            className='btn mx-auto'
+            onClick={() => dispatch(setSearchTerm(''))}>
+            Home
+          </button>
+        </div>
+      </StyledPostsWrapper>
+    );
   }
 
   return (
