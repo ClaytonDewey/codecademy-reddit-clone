@@ -13,7 +13,7 @@ import Comment from './Comment';
 type PostProps = {
   key: string;
   post: PostObj;
-  // onToggleComments: (link: any) => void;
+  onToggleComments: (link: any) => void;
 };
 
 const PostContainer = styled.article`
@@ -187,7 +187,19 @@ const PostContainer = styled.article`
   }
 `;
 
-const Post: React.FC<PostProps> = ({ key, post }) => {
+const Post: React.FC<PostProps> = ({ key, post, onToggleComments }) => {
+  const renderComments = () => {
+    if (post.showingComments) {
+      return (
+        <>
+          {post.comments.map((comment) => {
+            return <Comment />;
+          })}
+        </>
+      );
+    }
+  };
+
   return (
     <PostContainer key={key}>
       <div className='vote'>
@@ -220,14 +232,14 @@ const Post: React.FC<PostProps> = ({ key, post }) => {
 
         <div className='post-footer'>
           <button
-            // onClick={() => onToggleComments(post.permalink)}
+            onClick={() => onToggleComments(post.permalink)}
             aria-label='Show comments'>
             <GoComment />
             <span>{shortenNumber(post.num_comments, 1)} Comments</span>
           </button>
         </div>
       </div>
-      <Comment />
+      {renderComments()}
     </PostContainer>
   );
 };
