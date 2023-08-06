@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import icon from '../assets/subRedditIcon.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../store';
+import { useAppSelector } from '../hooks';
+import { fetchSubreddits, selectSubreddits } from '../store/subRedditslice';
+import {
+  setSelectedSubreddit,
+  selectSelectedSubreddit,
+} from '../store/redditSlice';
 
 type SubredditProps = {};
 
@@ -37,23 +45,45 @@ const StyledItem = styled.li`
     border: 3px solid;
     box-sizing: content-box;
   }
+
+  &.active {
+    background-color: var(--color-branding-transparent);
+    border-left: 3px solid;
+  }
 `;
 
 const Subreddit: React.FC<SubredditProps> = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const subreddits = useSelector(selectSubreddits);
+  const selectedSubreddit = useSelector(selectSelectedSubreddit);
+
+  useEffect(() => {
+    dispatch(fetchSubreddits());
+  }, [dispatch]);
+
   return (
     <StyledContainer>
-      <StyledItem>
-        <button>
-          <img src={icon} alt='' className='icon' />
-          <span>mildlyinfuriating</span>
-        </button>
-      </StyledItem>
-      <StyledItem>
-        <button>
-          <img src={icon} alt='' className='icon' />
-          <span>mildlyinfuriating</span>
-        </button>
-      </StyledItem>
+      {subreddits.map((subreddit) => {
+        return (
+          <StyledItem
+            key={subreddit.id}
+            className={`${selectedSubreddit === subreddit.url && `active`}`}>
+            <button
+              onClick={() => dispatch(setSelectedSubreddit(subreddit.url))}>
+              <img
+                src={
+                  subreddit.icon_img ||
+                  `https://api.adorable.io/avatars/25/${subreddit.display_name}`
+                }
+                alt={subreddit.display_name}
+                style={{ border: `3px solid ${subreddit.primary_color}` }}
+                className='icon'
+              />
+              <span>{subreddit.display_name}</span>
+            </button>
+          </StyledItem>
+        );
+      })}
     </StyledContainer>
   );
 };
