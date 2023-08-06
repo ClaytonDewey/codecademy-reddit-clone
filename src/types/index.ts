@@ -7,4 +7,6 @@ export interface PostObj {
   title: string;
   url: string;
   subreddit_name_prefixed: string;
+  showingComments: boolean;
+  comments: [];
 }
