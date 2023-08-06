@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import redditFace from '../images/redditFace.svg';
 import redditText from '../images/redditText.svg';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../store';
+import { useAppSelector } from '../hooks';
+import { setSearchTerm } from '../store/redditSlice';
 
 const StyledHeader = styled.header`
   grid-column: 1/-1;
@@ -56,15 +60,38 @@ const StyledHeader = styled.header`
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {
+  const [searchTermLocal, setSearchTermLocal] = useState('');
+  const searchTerm = useAppSelector((state) => state.reddit.searchTerm);
+  const dispatch: AppDispatch = useDispatch();
+
+  const onSearchTermChange = (e) => {
+    setSearchTermLocal(e.target.value);
+  };
+
+  useEffect(() => {
+    setSearchTermLocal(searchTerm);
+  }, [searchTerm]);
+
+  const onSubmitSearch = (e) => {
+    e.preventDefault();
+    dispatch(setSearchTerm(searchTermLocal));
+  };
+
   return (
     <StyledHeader>
       <div className='logo'>
         <img src={redditFace} height='30px' alt='logo' role='presentation' />
         <img src={redditText} height='46px' alt='reddit' role='presentation' />
       </div>
-      <form className='search'>
-        <input type='text' placeholder='Search' aria-label='Search Posts' />
-        <button type='submit' aria-label='Search'>
+      <form className='search' onSubmit={onSubmitSearch}>
+        <input
+          type='text'
+          value={searchTermLocal}
+          onChange={onSearchTermChange}
+          placeholder='Search'
+          aria-label='Search Posts'
+        />
+        <button type='submit' onClick={onSubmitSearch} aria-label='Search'>
           <AiOutlineSearch />
         </button>
       </form>
