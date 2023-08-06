@@ -7,8 +7,7 @@ import {
   fetchPosts,
   selectFilteredPosts,
   setSearchTerm,
-  // setSearchTerm,
-  // fetchComments,
+  fetchComments,
 } from '../store/redditSlice';
 import { styled } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,13 +36,13 @@ const Posts: React.FC<PostsProps> = () => {
     dispatch(fetchPosts(selectedSubreddit));
   }, [selectedSubreddit, dispatch]);
 
-  // const onToggleComments = (index: number) => {
-  //   const getComments = (link: string) => {
-  //     dispatch(fetchComments(index, link));
-  //   };
+  const onToggleComments = (index: number) => {
+    const getComments = (link: string) => {
+      dispatch(fetchComments(index, link));
+    };
 
-  //   return getComments;
-  // };
+    return getComments;
+  };
 
   if (isLoading) {
     return (
@@ -81,7 +80,7 @@ const Posts: React.FC<PostsProps> = () => {
           <Post
             key={post.id}
             post={post}
-            // onToggleComments={onToggleComments(index)}
+            onToggleComments={onToggleComments(index)}
           />
         );
       })}
