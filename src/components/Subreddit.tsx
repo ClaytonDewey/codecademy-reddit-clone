@@ -5,7 +5,7 @@ import { AppDispatch } from '../store';
 import { fetchSubreddits, selectSubreddits } from '../store/subRedditslice';
 import {
   setSelectedSubreddit,
-  selectSelectedSubreddit,
+  // selectSelectedSubreddit,
 } from '../store/redditSlice';
 
 const StyledDropdown = styled.select`
@@ -22,21 +22,21 @@ type DropDownProps = {};
 const DropDown: React.FC<DropDownProps> = () => {
   const dispatch: AppDispatch = useDispatch();
   const subreddits = useSelector(selectSubreddits);
-  const selectedSubreddit = useSelector(selectSelectedSubreddit);
-
-  const handleChange = (e) => {
-    console.log(selectedSubreddit, e.target.value);
-  };
+  // const selectedSubreddit = useSelector(selectSelectedSubreddit);
 
   useEffect(() => {
     dispatch(fetchSubreddits());
   }, [dispatch]);
 
-  console.log(subreddits);
   return (
-    <StyledDropdown onChange={handleChange}>
+    <StyledDropdown
+      onChange={(e) => dispatch(setSelectedSubreddit(e.target.value))}>
       {subreddits.map((subreddit) => {
-        return <option key={subreddit.id}>{subreddit.display_name}</option>;
+        return (
+          <option key={subreddit.id} value={subreddit.display_name}>
+            {subreddit.display_name}
+          </option>
+        );
       })}
     </StyledDropdown>
   );
