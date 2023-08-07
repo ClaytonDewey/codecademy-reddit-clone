@@ -55,7 +55,11 @@ const Posts: React.FC<PostsProps> = () => {
   }
 
   if (error) {
-    return <p>Failed to load posts.</p>;
+    return (
+      <StyledPostsWrapper>
+        <p>Failed to load posts.</p>
+      </StyledPostsWrapper>
+    );
   }
 
   if (posts.length === 0) {
