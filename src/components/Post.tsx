@@ -192,14 +192,17 @@ const Post: React.FC<PostProps> = ({ key, post, onToggleComments }) => {
     if (post.showingComments) {
       return (
         <>
-          {post.comments.map((comment) => {
-            return <Comment />;
+          {post.comments.map((comment, index) => {
+            return <Comment comment={comment} key={index} />;
           })}
         </>
       );
     }
   };
 
+  const linkBg = post.link_flair_background_color;
+  const linkTxt = post.link_flair_text_color;
+  // console.log(post);
   return (
     <PostContainer key={key}>
       <div className='vote'>
@@ -224,7 +227,24 @@ const Post: React.FC<PostProps> = ({ key, post, onToggleComments }) => {
             </div>
           </div>
         </div>
-        <h3 className='post-title'>{post.title}</h3>
+        <h3 className='post-title'>
+          <button
+            className='btn'
+            style={{
+              backgroundColor: linkBg,
+              color: linkTxt,
+              fontSize: 11,
+              paddingInline: 8,
+              paddingBlock: 2,
+              fontWeight: 400,
+              minHeight: 'initial',
+              display: 'inline-block',
+              marginRight: 5,
+            }}>
+            {post.link_flair_text}
+          </button>
+          {post.title}
+        </h3>
 
         <div className='post-image'>
           <img src={post.url} alt='' />
