@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { CommentObj } from '../types';
 
-type CommentProps = {};
+type CommentProps = {
+  key: number;
+  comment: CommentObj;
+};
 
 const StyledComment = styled.div`
   background-color: #fff;
@@ -32,23 +36,24 @@ const StyledComment = styled.div`
   }
 `;
 
-const Comment: React.FC<CommentProps> = () => {
+const Comment: React.FC<CommentProps> = ({ key, comment }) => {
+  // console.log(comment);
+
   return (
-    <StyledComment>
+    <StyledComment key={key}>
       <div className='comment-meta'>
         <img
-          src='https://api.adorable.io/avatars/10/StarKiller32'
-          alt='StarKiller32'
+          src={`https://api.adorable.io/avatars/10/${comment.author}`}
+          alt={`${comment.author} profile`}
           className='comment-image'
         />
-        <p className='comment-author'>StarKiller32</p>
-        <p className='comment-date'>6 hours ago</p>
+        <p className='comment-author'>{comment.author}</p>
+        <p className='comment-date'>
+          {moment.unix(comment.created_utc).fromNow()}
+        </p>
       </div>
 
-      <div className='comment-body'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam vel
-        dolores recusandae consequatur ex quae.
-      </div>
+      <div className='comment-body'>{comment.body}</div>
     </StyledComment>
   );
 };
